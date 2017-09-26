@@ -1,7 +1,7 @@
-h# Provider Prescriber
+# Provider Prescriber
 This repo contains the documentation for my final capstone project at [Galvanize](https://www.galvanize.com/denver-platte/data-science#curriculum). The goal of this project is to effectively combine my programming and data science toolbox to predict the top 10 most similar NPIs based on a given provider NPI.
 
-The data is a public dataset available for download from [www.cms.gov](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination.html). The current file has over 5 million entries and 328 available fields for each NPI which makes my project's biggest challenge combatting computations on a very large dataset.  
+The data is a public dataset available for download from [CMS](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination.html). The current file has over 5 million entries and 328 available fields for each NPI which makes my project's biggest challenge combatting computations on a very large dataset.  
 
 This is an unsupervised learning case study where a true target label does not exist. By joining this data with implicit or user ratings, the similarity matrix could be integrated into a recommender engine to predict the most similar NPIs based on user preferences.  
 
