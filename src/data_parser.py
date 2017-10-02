@@ -16,13 +16,14 @@ SECRET_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 # key.set_contents_from_filename(filename)
 # print('Files in bucket:', [f.name for f in bucket.list()])
 
-
 # client = boto3.client('s3') #low-level functional API
 # resource = boto3.resource('s3') #high-level object-oriented API
 # obj = client.get_object(Bucket='gschoolcapstone', Key='npidata_20050523-20170813FileHeader.csv')
+# obj = client.get_object(Bucket='gschoolcapstone', Key='npidata_20050523-20170813.csv')
 # f = obj['Body'].read().decode()
-# for row in f.split('\n'):
-# 	row.split(',')
+# for i,row in enumerate(f.split('\n')):
+# 	if i < 10: print(row.split(','))
+
 
 
 class NPIparser(object):
@@ -34,7 +35,7 @@ class NPIparser(object):
 		self.df = pd.read_csv('data/nucc_taxonomy_171.csv')
 		self.codes = np.array(self.df.Code)
 		# col_names = df.columns.values
-
+		self.classifications = np.sort(np.array(self.df.Classification.unique()))
 		self.states = np.array(['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', \
 								'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', \
 								'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', \
@@ -83,7 +84,7 @@ class NPIparser(object):
 		col_names = np.append(col_names, ['Organization Subpart_Y', 'Organization Subpart_N'])
 		state_names = np.array(['st_' + state for state in self.states])
 		col_names = np.append(col_names, state_names)	# Add column for each state
-		col_names = np.append(col_names, 'Primary_Taxonomy_Code')
+		# col_names = np.append(col_names, self.classifications)
 		col_names = np.append(col_names, self.codes)	# Add column for each Taxonomy Code
 		col_names = np.append(col_names, self.creds)
 		# print(col_names)
@@ -118,8 +119,8 @@ class NPIparser(object):
 				line = np.append(line, states)
 				# print(line[self.col_dict['Provider Business Mailing Address State Name']], states)
 
-				primary = self._find_primary(line)
-				line = np.append(line, primary)
+				# primary = self._find_primary_classification(line)
+				# line = np.append(line, primary)
 
 				specialties = self._find_specialties(line, self.codes)
 				line = np.append(line, specialties)
@@ -152,7 +153,7 @@ class NPIparser(object):
 			if i%100000==0 and i!=0:
 				print(i)
 				print('Time since started:', time.time()-start, 'seconds')
-			if i==0: break
+			# if i==0: break
 		return None
 
 	def _find_entity(self, line):
@@ -184,7 +185,7 @@ class NPIparser(object):
 		state = line[idx]
 		return np.in1d(states, state).astype(int)
 
-	def _find_primary(self, line):
+	def _find_primary_classification(self, line):
 		switches = ['Healthcare Provider Primary Taxonomy Switch_1',
 				'Healthcare Provider Primary Taxonomy Switch_2',
 				'Healthcare Provider Primary Taxonomy Switch_3',
@@ -219,11 +220,10 @@ class NPIparser(object):
 				'Healthcare Provider Taxonomy Code_15']
 		col = self.col_dict[cols[idx]]
 		primary = line[col] # Returns primary code
-		print(self.df[['Classification', 'Specialization']][self.df.Code == primary].values)
-
-
-		
-		return primary
+		# classification = self.df.Classification[self.df.Code==primary].values[0]
+		classification = self.df.Classification[self.df.Code==primary].values
+		# AttributeError: 'bool' object has no attribute 'astype'
+		return (self.classifications == classification).astype(int)
 
 	def _find_specialties(self, line, codes):
 		keys = ['Healthcare Provider Taxonomy Code_1',
@@ -247,7 +247,6 @@ class NPIparser(object):
 	def _find_credentials(self, line, creds):
 		idx = self.col_dict['Provider Credential Text']
 		x = line[idx]
-		# print(x)
 		x = x.upper()
 		x = re.sub("PHARMD", "RPH ", x)
 		x = re.sub("\.|\>|\`","",x)
@@ -266,15 +265,14 @@ class NPIparser(object):
 		x = re.sub("0D", "OD", x)
 		x = re.sub("[\d]", "", x) # remove numbers
 		x = x.strip()
-		# print(x)
-		# print([int(cred in x) for cred in creds])
-		return np.array([int(cred in x) for cred in creds])
 		# print (np.in1d(creds, x).astype(int))
+		return np.array([int(cred in x) for cred in creds])
+
 
 if __name__ == '__main__':
-
 	start = time.time()
 	npi = NPIparser()
+	# filename = 'https://s3n.amazonaws.com/gschoolcapstone/npidata_20050523-20170813.csv'
 	filename = 'data/npidata_20050523-20170813.csv'
 	npi.parse_to_numeric(filename)
 	print('Time to parse:', time.time()-start, 'seconds')
