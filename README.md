@@ -23,7 +23,7 @@ Provide the top 10 most similar providers given a specific National Provider Ide
 * Feature engineering
 * Join with other useful datasets (taxonomy code data dictionary)
 
-![ProcessFlow](\images\ProcessFlow.png)
+![ProcessFlow](/images/ProcessFlow.png)
 
 ## Method
 Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data. 
@@ -34,7 +34,7 @@ To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) whic
 3. Group items with similar hashes into buckets (option to set similarity threshold)
 4. Calculate similarity distance between items in the same bucket
 
-![MinHashLSH](\images\MinHashLSH)
+![MinHashLSH](/images/MinHashLSH)
 
 For this project, I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel calculations. 
 
@@ -49,7 +49,7 @@ $$
 
 Below is a simple example of how similarity is calculated between items.
 
-![SimilarityExample](\images\SimilarityExample.png)
+![SimilarityExample](/images/SimilarityExample.png)
 
 False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system. False Negatives occur when a pair of similar items are *not* grouped in the same bucket and will never be compared. False Negatives are more detrimental for analysis; consider this equivalent to never finding your soul mate!
 
