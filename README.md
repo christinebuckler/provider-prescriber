@@ -43,7 +43,7 @@ $$
 \d(A,B) = 1 - \frac{\left |A\cap B  \right |}{\left |A\cup B  \right |}
 $$
 
-![JaccardSimilarity](/images/JaccardSimilarity.png =320x)
+![JaccardSimilarity](/images/JaccardSimilarity.png){:height="320px"}
 
 Distances close to zero indicate high similarity; distances close to one indicate high dissimilarity.
 
