@@ -15,7 +15,7 @@ Provide the top 10 most similar providers given a specific National Provider Ide
 * Stretch Goal 2:  Account for monthly and weekly data updates
 
 ## Method
-Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(N^2) O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data. 
+Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data. 
 
 To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) which is an efficient algorithm to find similar items using hashes. This technique approximates similarity within a threshold using the following steps:
 1. Input binary vectors where non-zero values indicate presence of element/feature
@@ -25,6 +25,11 @@ To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) whic
 
 For this project, I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel calculations. 
 
+## Measures
+Jaccard distance measure: relationship between intersection and union: 
+𝑑_𝐴, 𝐵_=1− __𝐴∩𝐵___𝐴∪𝐵__
+
+Distance close to zero indicates high similarity; distance close to one indicates high dissimilarity.
 
 
 
