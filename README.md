@@ -14,6 +14,17 @@ Provide the top 10 most similar providers given a specific National Provider Ide
 * Stretch Goal 1: Scale model to compute similarity on entire dataset
 * Stretch Goal 2:  Account for monthly and weekly data updates
 
+## EDA & Data Mining:  
+* Download public dataset from www.cms.org
+* Load data subset locally
+* Identify key features
+* Decide how to label missing data
+* Preprocess data into usable format
+* Feature engineering
+* Join with other useful datasets (taxonomy code data dictionary)
+
+<Insert process flow chart and explain steps>
+
 ## Method
 Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data. 
 
@@ -27,37 +38,33 @@ For this project, I used Apache Spark's implementation of MinHash LSH to take ad
 
 ## Measures
 Jaccard distance measure: relationship between intersection and union: 
+
 𝑑_𝐴, 𝐵_=1− __𝐴∩𝐵___𝐴∪𝐵__
+$$
+d(A,B) = 1- \frac{A B}{A B}
+$$
 
-Distance close to zero indicates high similarity; distance close to one indicates high dissimilarity.
+Distances close to zero indicate high similarity; distances close to one indicate high dissimilarity.
 
+False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system. False Negatives occur when a pair of similar items are *not* grouped in the same bucket and will never be compared. False Negatives are more detrimental for analysis; consider this equivalent to never finding your soul mate!
 
+This is an unsupervised learning case study where a true target label does not exist. By joining this data with implicit or user ratings, the similarity matrix could become a recommender system to predict the most similar NPIs based on user preferences.
 
+## Results
+I was able to compute similarity distances for a subset of the data (10,000 NPIs) and store inside a database which can be queried for specific NPIs.  
 
+## Next Steps
+With more time, I would like to explore the following areas:
+* Improve virtual machine configuration to scale for more items
+* Expand input method to allow for updates without re-hashing existing data
+* Evaluate other features that add value to similarity measure such as standardized provider ratings
+* Integrate query with NPPES API to give context to the results
+* Add functionality to search for similar providers based on a list of NPIs
+* Cluster or graph items to visualize groupings
 
-### EDA & Data Mining:  
-* Download public dataset from www.cms.org
-* Load data subset locally
-* Identify key features
-* Decide how to label missing data
-* Preprocess data into usable format
-* Feature engineering
-* Join with other useful datasets (taxonomy code data dictionary)
+## References
+Pyspark documentation
+online publications
 
-### Unsupervised Learning:
-* Create Similarity Matrix and compare distance measures
-* Create Graph and use to visual community and neighbors
-
-### Stretch Goals
-* Leverage big data tools, AWS and PySpark, to handle large dataset
-* Accommodate weekly and monthly data updates
-* Build web app platform for user interface
-* Cluster data and visualize in 3D space
-
-# Data Flow
-
-(insert flow chart here)
-(storage, input, processes, output, UI)
-
-
-This is an unsupervised learning case study where a true target label does not exist. By joining this data with implicit or user ratings, the similarity matrix could be integrated into a recommender engine to predict the most similar NPIs based on user preferences.  
+## Credits
+Special thanks to the Galvanize instructors, DSRs, mentors, classmates and my family for their support and encouragement during my immersive experience! 
