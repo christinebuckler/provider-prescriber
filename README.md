@@ -23,8 +23,6 @@ Provide the top 10 most similar providers given a specific National Provider Ide
 * Feature engineering
 * Join with other useful datasets (taxonomy code data dictionary)
 
-![ProcessFlow](/images/ProcessFlow.png)
-
 ## Method
 Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data. 
 
@@ -34,9 +32,11 @@ To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) whic
 3. Group items with similar hashes into buckets (option to set similarity threshold)
 4. Calculate similarity distance between items in the same bucket
 
-![MinHashLSH](/images/MinHashLSH)
+![MinHashLSH](/images/MinHashLSH.png)
 
-For this project, I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel calculations. 
+Below is an overview of the process steps which begins with data exploration and data munging. The model requires that the input be transformed into binary vectors which was done by parsing the csv in Python. I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel similarity calculations. The PySpark script was executed on an AWS virtual machine for additional computing power and resources. The output csv was uploaded to a Postgres database where it is available to be queried by users. 
+
+![ProcessFlow](/images/ProcessFlow.png)
 
 ## Measures
 The Jaccard distance measure considers the relationship between intersection and union. There are several variations of Jaccard that solve for similarity versus disimilarity. Below is the equation used in this study where distances close to zero indicate high similarity; distances close to one indicate high dissimilarity.
