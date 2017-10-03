@@ -4,13 +4,13 @@ This repo contains the documentation for my final capstone project at [Galvanize
 ## Background
 Healthcare providers are diverse and current information systems don’t always contain the most effective filters to find similar providers. Each healthcare provider is considered to have a unique NPI with exception for cases of fraud. What is an NPI? An NPI (National Provider Identifier) is a 10-digit intelligence-free numeric identifier that is given to each healthcare provider and organization. 
 
-![NPI_num](/images/NPI_num.png)
+![NPI_num](/images/NPI_num.jpg)
 
 There are many possible business use cases for this study, however, the ones I feel would be most pertinent include provider recommendations for:
 * Pharmaceutical representatives selling specialty products to similar providers
 * Patients that have changed insurance plans and are looking for a similar provider
 
-![providers](/images/providers.png) ![NPPES](/images/NPPES.png)
+![providers](/images/providers.jpg) ![NPPES](/images/NPPES.png)
 
 The public dataset (6GB) is available for download from [CMS](https://www.cms.gov/Regulations-and-Guidance/Administrative-Simplification/NationalProvIdentStand/DataDissemination.html). The current database has over 5 million entries and 328 available descriptor fields for each NPI. The BIGgest challenge in this study is working with BIG data. The method is straightforward but the computing resources must be optimized. Features used in this study include: entity type, gender, state of business location, specialties, credentials, sole proprietor status, and organizational subpart status.
 
