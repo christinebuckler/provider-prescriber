@@ -39,10 +39,11 @@ For this project, I used Apache Spark's implementation of MinHash LSH to take ad
 ## Measures
 Jaccard distance measure: relationship between intersection and union: 
 
-𝑑_𝐴, 𝐵_=1− __𝐴∩𝐵___𝐴∪𝐵__
 $$
-d(A,B) = 1- \frac{A B}{A B}
+\d(A,B) = 1 - \frac{\left |A\cap B  \right |}{\left |A\cup B  \right |}
 $$
+
+![image](images/JaccardSimilarity)
 
 Distances close to zero indicate high similarity; distances close to one indicate high dissimilarity.
 
