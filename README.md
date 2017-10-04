@@ -91,4 +91,4 @@ With more time, I would like to explore the following areas:
 [Near Neighbor Search in High Dimensional Data 2](https://web.stanford.edu/class/cs345a/slides/05-LSH.pdf) by Anand Rajaraman  
 
 ## Credits
-Special thanks to the Galvanize instructors, DSRs, mentors, classmates and my family and friends for their support and encouragement during my immersive experience!
+Special thanks to the Galvanize instructors, DSRs, mentors, classmates and my family and friends for their support and encouragement during my immersive experience. Most importantly, I would like to thank my husband Simon for giving me the opportunity to pursue my goal of becoming a data scientist. I am incredibly fortunate to be a part of the amazing g49 cohort and for my Galvanize immersive experience!
