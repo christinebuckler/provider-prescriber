@@ -92,6 +92,7 @@ With more time, I would like to explore the following areas:
 
 ## References
 [MinHash](https://en.wikipedia.org/wiki/MinHash)  
+[Min Hashing](https://www.cs.utah.edu/~jeffp/teaching/cs5955/L5-Minhash.pdf)  
 [Pyspark MinHash LSH documentation](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSH)  
 [Getting Started on LSH](http://homepages.lasige.di.fc.ul.pt/~vielmo/notes/2016_11_18_navtalk_lsh.pdf) by Vinicius Vielmo Cogo  
 [Near Neighbor Search in High Dimensional Data 2](https://web.stanford.edu/class/cs345a/slides/05-LSH.pdf) by Anand Rajaraman   
