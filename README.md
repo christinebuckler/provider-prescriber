@@ -38,7 +38,10 @@ To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) whic
 3. Group items with similar hashes into buckets (option to set similarity threshold)
 4. Calculate similarity distance between items in the same bucket
 
-![MinHashLSH](/images/MinHashLSH.png)
+![binaryvector](/images/binaryvector.png)
+![hashes](/images/hashes.png)
+![MinHashLSHbuckets](/images/MinHashLSHbuckets.png)
+![MinHashLSHwithinbucket](/images/MinHashLSHwithinbucket.png)
 
 Below is an overview of the process steps which begins with data exploration and data munging. The model requires that the input be transformed into binary vectors which was done by parsing the csv in Python. I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel similarity calculations. The PySpark script was executed on an AWS virtual machine for additional computing power and resources. The output csv was uploaded to a Postgres database where it is available to be queried by users. 
 
@@ -47,19 +50,17 @@ Below is an overview of the process steps which begins with data exploration and
 ## Measures
 The Jaccard distance measure considers the relationship between intersection and union. There are several variations of Jaccard that solve for similarity versus disimilarity. Below is the equation used in this study where distances close to zero indicate high similarity; distances close to one indicate high dissimilarity.
 
-$$
-\d(A,B) = 1 - \frac{\left |A\cap B  \right |}{\left |A\cup B  \right |}
-$$
-
 ![JaccardSimilarity](/images/JaccardSimilarity.png)
 
 Below is a simple example of how similarity is calculated between items.
 
 ![SimilarityExample](/images/SimilarityExample.png)
 
-False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system. False Negatives occur when a pair of similar items are *not* grouped in the same bucket and will never be compared. False Negatives are more detrimental for analysis; consider this equivalent to never finding your soul mate!
+![SimilarityCalc](/images/SimilarityCalc.png)
 
-![FPFN](/images/FPFN.png)
+![FP](/images/FP.png) False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system. 
+
+![FN](/images/FN.png) False Negatives occur when a pair of similar items are *not* grouped in the same bucket and will never be compared. False Negatives are more detrimental for analysis; consider this equivalent to never finding your soul mate!
 
 This is an unsupervised learning case study where a true target label does not exist. With a labeled target, accuracy, precision and recall could be calculated to evaluate the predictive power of the model. 
 
