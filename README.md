@@ -65,10 +65,10 @@ Below is a simple example of how similarity is calculated between items.
 
 ![SimilarityCalc](/images/SimilarityCalc.png)
 
-![FP](/images/FP.png)
+![FP](/images/FP.png)  
 False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system.
 
-![FN](/images/FN.png)
+![FN](/images/FN.png)  
 False Negatives occur when a pair of similar items are *not* grouped in the same bucket and will never be compared. False Negatives are more detrimental for analysis; consider this equivalent to never finding your soul mate!
 
 This is an unsupervised learning case study where a true target label does not exist. With a labeled target, accuracy, precision and recall could be calculated to evaluate the predictive power of the model.
