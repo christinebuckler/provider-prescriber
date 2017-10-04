@@ -33,15 +33,17 @@ Provide the top 10 most similar providers given a specific National Provider Ide
 Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data. 
 
 To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) which is an efficient algorithm to find similar items using hashes. This technique approximates similarity within a threshold using the following steps:
-1. Input binary vectors where non-zero values indicate presence of element/feature
-2. Create hashes/slices of each item (increasing the number of hashes increases accuracy but also increases computational cost and run time)
-3. Group items with similar hashes into buckets (option to set similarity threshold)
-4. Calculate similarity distance between items in the same bucket
-
+1. Transform data into binary vectors where non-zero values indicate presence of element/feature
 ![binaryvector](/images/binaryvector.png)
+2. Create hashes/slices of each item (increasing the number of hashes increases accuracy but also increases computational cost and run time)
 ![hashes](/images/hashes.png)
+3. Group items with similar hashes into buckets (option to set similarity threshold)
 ![MinHashLSHbuckets](/images/MinHashLSHbuckets.png)
+4. Calculate similarity distance between items in the same bucket
 ![MinHashLSHwithinbucket](/images/MinHashLSHwithinbucket.png)
+5. Tune parameters.
+* Increasing the number of hashes increases accuracy but also increases computational cost and run time.
+* Increasing the similarity threshold increases the number of buckets.  
 
 Below is an overview of the process steps which begins with data exploration and data munging. The model requires that the input be transformed into binary vectors which was done by parsing the csv in Python. I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel similarity calculations. The PySpark script was executed on an AWS virtual machine for additional computing power and resources. The output csv was uploaded to a Postgres database where it is available to be queried by users. 
 
@@ -58,9 +60,11 @@ Below is a simple example of how similarity is calculated between items.
 
 ![SimilarityCalc](/images/SimilarityCalc.png)
 
-![FP](/images/FP.png) False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system. 
+![FP](/images/FP.png) 
+False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system. 
 
-![FN](/images/FN.png) False Negatives occur when a pair of similar items are *not* grouped in the same bucket and will never be compared. False Negatives are more detrimental for analysis; consider this equivalent to never finding your soul mate!
+![FN](/images/FN.png) 
+False Negatives occur when a pair of similar items are *not* grouped in the same bucket and will never be compared. False Negatives are more detrimental for analysis; consider this equivalent to never finding your soul mate!
 
 This is an unsupervised learning case study where a true target label does not exist. With a labeled target, accuracy, precision and recall could be calculated to evaluate the predictive power of the model. 
 
