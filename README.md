@@ -37,16 +37,21 @@ To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) whic
 ![binaryvector](/images/binaryvector.png)
 2. Create hashes/slices of each item (increasing the number of hashes increases accuracy but also increases computational cost and run time)
 ![hashes](/images/hashes.png)
-3. Group items with similar hashes into buckets (option to set similarity threshold)
-![MinHashLSHbuckets](/images/MinHashLSHbuckets.png)
-4. Calculate similarity distance between items in the same bucket
+3. Group items with similar hashes into buckets (option to set similarity threshold)  
+![MinHashLSHbuckets](/images/MinHashLSHbuckets.png) 
+4. Calculate similarity distance between items in the same bucket  
 ![MinHashLSHwithinbucket](/images/MinHashLSHwithinbucket.png)
-5. Tune parameters.
-* Increasing the number of hashes increases accuracy but also increases computational cost and run time.
-* Increasing the similarity threshold increases the number of buckets.  
+5. Tune parameters  
+* Increasing the number of hashes increases accuracy and lowers the false negative rate;  Decreasing it improves the running performance and lowers computational cost. The PySpark "MinHashLSH" class includes the a parameter for numHashTables with a default setting of 1. I choose 10 hash tables for the current results.  
+model = pyspark.ml.feature.MinHashLSH(inputCol, outputCol, numHashTables=1)
 
-Below is an overview of the process steps which begins with data exploration and data munging. The model requires that the input be transformed into binary vectors which was done by parsing the csv in Python. I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel similarity calculations. The PySpark script was executed on an AWS virtual machine for additional computing power and resources. The output csv was uploaded to a Postgres database where it is available to be queried by users. 
+* Increasing the similarity threshold increases the number of buckets. The "approxSimilarityJoin" method allows datasets to be joined to approximately find all pairs of rows whose distance are smaller than the threshold. In this case, the dataset was joined to itself and the threshold was set to .5 (50%). 
+distances = model.approxSimilarityJoin(datasetA, datasetB, threshold, distCol='distCol')  
 
+* There is also a "approxNearestNeighbors" method which compares a single item to a dataset to approximately find n items which have the closest distance (similarity) to the item.   
+neighbors = model.approxNearestNeighbors(dataset, key, numNearestNeighbors, distCol='distCol')  
+
+Below is an overview of the process steps which begins with data exploration and data munging. The model requires that the input be transformed into binary vectors which was done by parsing the csv in Python. Next, I used Apache Spark's implementation of MinHash LSH to take advantage of distributed computing to evaluate many parallel similarity calculations. The PySpark script was executed on an AWS virtual machine for additional computing power and resources. The output csv was uploaded to a Postgres database where it is available to be queried by users. 
 ![ProcessFlow](/images/ProcessFlow.png)
 
 ## Measures
