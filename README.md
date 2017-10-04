@@ -37,14 +37,16 @@ Below is a summary of the process steps which begins with data exploration and d
 ## Method
 Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data.
 
-To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) which is an efficient algorithm to find similar items using hashes. This technique approximates similarity within a threshold using the following steps:
+To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) which is an efficient algorithm to find similar items using hashes instead of explicity computing the distance measure. MinHash was originally applied to clustering and intended to eliminate near-duplicate word sets among web documents dealing with sets of words that appear in each document. This method can also be applied to other forms of data such as images where an image is divided into subsections and can be compared in terms of sets with other images.  
+
+This technique approximates similarity within a threshold using the following steps:
 1. Transform data into binary vectors where non-zero values indicate presence of element/feature
 ![binaryvector](/images/binaryvector.png)
 2. Create hashes/slices of each item (increasing the number of hashes increases accuracy but also increases computational cost and run time)
 ![hashes](/images/hashes.png)
 3. Group items with similar hashes into buckets (option to set similarity threshold)  
 ![MinHashLSHbuckets](/images/MinHashLSHbuckets.png)
-4. Calculate similarity distance between items in the same bucket  
+4. Calculate similarity distance between items in the same bucket by comparing hashes  
 ![MinHashLSHwithinbucket](/images/MinHashLSHwithinbucket.png)
 5. Tune parameters  
 * Increasing the number of hashes increases accuracy and lowers the false negative rate;  Decreasing it improves the running performance and lowers computational cost. The PySpark "MinHashLSH" class includes the a parameter for numHashTables with a default setting of 1. I choose 10 hash tables for the current results.  
@@ -52,7 +54,7 @@ model = pyspark.ml.feature.[MinHashLSH](http://spark.apache.org/docs/2.2.0/api/p
 * Increasing the similarity threshold increases the number of buckets. The "approxSimilarityJoin" method allows datasets to be joined to approximately find all pairs of rows whose distance are smaller than the threshold. In this case, the dataset was joined to itself and the threshold was set to .5 (50%).   
 distances = model.[approxSimilarityJoin](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSHModel.approxSimilarityJoin)(datasetA, datasetB, threshold, distCol='distCol')  
 * There is also a "approxNearestNeighbors" method which compares a single item to a dataset to approximately find n items which have the closest distance (similarity) to the item.   
-neighbors = model.[approxNearestNeighbors](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSHModel.approxNearestNeighbors)(dataset, key, numNearestNeighbors, distCol='distCol')  
+neighbors = model.[approxNearestNeighbors](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSHModel.approxNearestNeighbors)(dataset, key, numNearestNeighbors, distCol='distCol') 
 
 ## Measures
 The Jaccard distance measure considers the relationship between intersection and union. There are several variations of Jaccard that solve for similarity versus disimilarity. Below is the equation used in this study where distances close to zero indicate high similarity; distances close to one indicate high dissimilarity.
