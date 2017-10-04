@@ -35,7 +35,7 @@ Below is a summary of the process steps which begins with data exploration and d
 * Join with other useful datasets (taxonomy code data dictionary)
 
 ## Method
-Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data.
+Brute force method compares each item to every other item which doubles the computation and memory storage with each addition to the input data set O(n<sup>2</sup>). The curse of dimensionality makes this a very challenging task. LSH reduces the dimensionality of high-dimensional data by mapping large sets of values to a smaller number of hash values.  
 
 To tackle this problem, I utilized MinHash LSH (Locality Sensitive Hashing) which is an efficient algorithm to find similar items using hashes instead of explicity computing the distance measure. MinHash was originally applied to clustering and intended to eliminate near-duplicate word sets among web documents dealing with sets of words that appear in each document. This method can also be applied to other forms of data such as images where an image is divided into subsections and can be compared in terms of sets with other images.  
 
