@@ -67,8 +67,10 @@ Below is a simple example of how similarity is calculated between items.
 
 ![SimilarityCalc](/images/SimilarityCalc.png)
 
-However, it is important to consider the error that is caused by approximation. The expected error for *k* hash functions is at most O(1/√k). ![error](/images/error.png) Therefore, given k=10 hashes, the max error is expected to be at most ~32% for this study. The sources of possible error are described below.  
+However, it is important to consider the error that is caused by approximation. The expected error for *k* hash functions is at most O(1/√k). Therefore, given k=10 hashes, the max error is expected to be at most ~32% for this study.  
+![error](/images/error.png)  
 
+The sources of possible error are described below.  
 ![FP](/images/FP.png)  
 False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system.  
 
