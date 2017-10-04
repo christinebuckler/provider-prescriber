@@ -92,3 +92,4 @@ With more time, I would like to explore the following areas:
 
 ## Credits
 Special thanks to the Galvanize instructors, DSRs, mentors, classmates and my family and friends for their support and encouragement during my immersive experience. Most importantly, I would like to thank my husband Simon for giving me the opportunity to pursue my goal of becoming a data scientist. I am incredibly fortunate to be a part of the amazing g49 cohort and for my Galvanize immersive experience!
+![g49](/images/g49.png)
