@@ -74,7 +74,7 @@ False Negatives occur when a pair of similar items are *not* grouped in the same
 This is an unsupervised learning case study where a true target label does not exist. With a labeled target, accuracy, precision and recall could be calculated to evaluate the predictive power of the model.
 
 ## Results
-I was able to compute similarity distances for a subset of the data (10,000 NPIs) and store inside a database which can be queried for specific NPIs. Try it out for yourself [here](https://buckler-pcd.firebaseapp.com/). (website created by Galvanize Web Dev student Chris White). Note: Only NPIs in this subset are currently included in the database. Need help finding your provider's NPI? Search [here](https://npiregistry.cms.hhs.gov/registry/).
+I was able to compute similarity distances for a subset of the data (10,000 NPIs) and store inside a database which can be queried for specific NPIs. Try it out for yourself [here](https://buckler-pcd.firebaseapp.com/). (website created by Galvanize Web Dev student Chris White). Note: Only NPIs in this [list](/data/website10000NPIs.txt) are currently included in the database. Need help finding your provider's NPI? Search [here](https://npiregistry.cms.hhs.gov/registry/).
 
 ## Next Steps
 With more time, I would like to explore the following areas:
@@ -91,5 +91,5 @@ With more time, I would like to explore the following areas:
 [Near Neighbor Search in High Dimensional Data 2](https://web.stanford.edu/class/cs345a/slides/05-LSH.pdf) by Anand Rajaraman  
 
 ## Credits
-Special thanks to the Galvanize instructors, DSRs, mentors, classmates and my family and friends for their support and encouragement during my immersive experience. Most importantly, I would like to thank my husband Simon for giving me the opportunity to pursue my goal of becoming a data scientist. I am incredibly fortunate to be a part of the amazing g49 cohort and for my Galvanize immersive experience!
+Special thanks to the Galvanize instructors (Adam Richards, Frank Burkholder), DSRs (John Prendergast, Taryn Heilman, Jon Courtney), project mentor (Gadalia O'Bryan), web dev support (Chris White), classmates and my family and friends for their support and encouragement during my immersive experience. Most importantly, I would like to thank my husband, Simon Buckler, for giving me the opportunity to pursue my goal of becoming a data scientist. I am incredibly fortunate to be a part of the amazing g49 cohort and for my Galvanize immersive experience!  
 ![g49](/images/g49.png)
