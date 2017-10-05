@@ -44,13 +44,13 @@ This technique approximates similarity within a threshold using the following st
 2. Randomly permutate rows with *k* hash functions  
 ![hashfunctions](/images/hashfunctions.png)  
 3. Compute MinHash Signature Matrix  
-> a. Initialize all values as infinity
-> b. Starting with row 0, where there is a "1", set the signature value for that column equal to the hash value only if it is less than the current signature value
+>> a. Initialize all values as infinity  
+>> b. Starting with row 0, where there is a "1", set the signature value for that column equal to the hash value only if it is less than the current signature value  
 ![sigmatrix](images/sigmatrix.png)  
 4. Group items with similar hashes into buckets (option to set similarity threshold)  
-![MinHashLSHbuckets](/images/MinHashLSHbuckets.png)
+![MinHashLSHbuckets](/images/MinHashLSHbuckets.png)  
 5. Calculate jaccard distance between items in the same bucket by comparing hash sets  
-![MinHashLSHwithinbucket](/images/MinHashLSHwithinbucket.png)
+![MinHashLSHwithinbucket](/images/MinHashLSHwithinbucket.png)  
 6. Tune parameters  
 * Increasing the number of hashes increases accuracy and lowers the false negative rate;  Decreasing it improves the running performance and lowers computational cost. The PySpark "MinHashLSH" class includes the a parameter for numHashTables with a default setting of 1. I choose 10 hash tables for the current results.  
 model = pyspark.ml.feature.[MinHashLSH](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSH)(inputCol, outputCol, numHashTables=1)
@@ -97,8 +97,8 @@ With more time, I would like to explore the following areas:
 [MinHash](https://en.wikipedia.org/wiki/MinHash)  
 [Min Hashing](https://www.cs.utah.edu/~jeffp/teaching/cs5955/L5-Minhash.pdf)  
 [Computing MinHash Signatures](http://infolab.stanford.edu/~ullman/mmds/ch3.pdf)  
-[Pyspark MinHash LSH documentation](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSH)  
-[Getting Started on LSH](http://homepages.lasige.di.fc.ul.pt/~vielmo/notes/2016_11_18_navtalk_lsh.pdf) by Vinicius Vielmo Cogo  
+[Pyspark MinHash LSH documentation](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSH)  
+[Getting Started on LSH](http://homepages.lasige.di.fc.ul.pt/~vielmo/notes/2016_11_18_navtalk_lsh.pdf) by Vinicius Vielmo Cogo   
 [Near Neighbor Search in High Dimensional Data 2](https://web.stanford.edu/class/cs345a/slides/05-LSH.pdf) by Anand Rajaraman   
 [Locality Sensitive Hashing at Uber Engineering](https://databricks.com/blog/2017/05/09/detecting-abuse-scale-locality-sensitive-hashing-uber-engineering.html)
 
