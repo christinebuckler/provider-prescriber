@@ -11,7 +11,7 @@ This repo contains the documentation for my final capstone project at [Galvanize
 [Results](#results)   
 [Next Steps](#next-steps)  
 [References](#references)  
-[Credits](#credits)  
+[Acknowledgements](#acknowledgements)  
 
 ## Background
 Healthcare providers are diverse and current information systems don’t always contain the most effective filters to find similar providers. Each healthcare provider is considered to have a unique NPI with exception for cases of fraud. What is an NPI? An NPI (National Provider Identifier) is a 10-digit intelligence-free numeric identifier that is given to each healthcare provider and organization.
@@ -122,7 +122,7 @@ With more time, I would like to explore the following areas:
 6. [Near Neighbor Search in High Dimensional Data 2](https://web.stanford.edu/class/cs345a/slides/05-LSH.pdf) by Anand Rajaraman   
 7. [Locality Sensitive Hashing at Uber Engineering](https://databricks.com/blog/2017/05/09/detecting-abuse-scale-locality-sensitive-hashing-uber-engineering.html)  
 
-## Credits
+## Acknowledgements
 Special thanks to the Galvanize instructors (Adam Richards, Frank Burkholder), DSRs (John Prendergast, Taryn Heilman, Jon Courtney), project mentor (Gadalia O'Bryan), web dev support (Chris White), classmates and my family and friends for their support and encouragement during my immersive experience. Most importantly, I would like to thank my husband, Simon Buckler, for giving me the opportunity to pursue my goal of becoming a data scientist. I am incredibly fortunate to be a part of the amazing g49 cohort and for my Galvanize immersive experience!  
 ![g49](/images/g49.png)
 
