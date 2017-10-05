@@ -45,7 +45,7 @@ This technique approximates similarity within a threshold using the following st
 ![hashfunctions](/images/hashfunctions.png)  
 3. Compute MinHash Signature Matrix  
    a. Initialize all values as infinity  
-   b. Starting with row 0, where there is a "1", set the signature value for that column equal to the hash value only if it is less than the current signature value  
+   b. Starting with row 0, where there is a "1", set the signature value for that column equal to the hash value only if it is less than the current signature value (this is the "min hash")  
 ![sigmatrix](images/sigmatrix.png)  
 4. Group items with similar hashes into buckets (option to set similarity threshold)  
 ![MinHashLSHbuckets](/images/MinHashLSHbuckets.png)  
