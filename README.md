@@ -1,6 +1,18 @@
 # Provider Prescriber
 This repo contains the documentation for my final capstone project at [Galvanize](https://www.galvanize.com/denver-platte/data-science#curriculum). The goal of this project is to effectively combine my programming and data science toolbox to demonstrate my analytical and critical thinking skills.
 
+## Table of Contents
+[Background](#background)  
+[Objective](#objective)  
+[Process Overview and Flow](#process-overview-and-flow)   
+[EDA & Data Mining](#eda-&-data-mining)  
+[Method](#method)  
+[Measures](#measures)  
+[Results](#results)  
+[Next Steps](#next-steps)  
+[References](#references)  
+[Credits](#credits)  
+
 ## Background
 Healthcare providers are diverse and current information systems don’t always contain the most effective filters to find similar providers. Each healthcare provider is considered to have a unique NPI with exception for cases of fraud. What is an NPI? An NPI (National Provider Identifier) is a 10-digit intelligence-free numeric identifier that is given to each healthcare provider and organization.
 
@@ -25,7 +37,7 @@ Below is a summary of the process steps which begins with data exploration and d
 
 ![ProcessFlow](/images/ProcessFlow.png)
 
-## EDA & Data Mining:  
+## EDA & Data Mining  
 * Download public dataset from www.cms.org
 * Load data subset locally
 * Identify key features
@@ -73,7 +85,7 @@ Below is a simple example of how the jaccard distance is calculated between item
 However, it is important to consider the error that is caused by approximation. The expected error for *k* hash functions is at most O(1/√k). Therefore, given k=10 hashes, the max error is expected to be at most ~32% for this study.  
 ![error](/images/error.png)  
 
-The simple example described in the method can be used used to compare the exact distances versus the estimated distance.  
+The simple example described in the method section can be used used to compare the exact distances versus the estimated distance.  
 
 Exact | Estimated
 ------|----------
