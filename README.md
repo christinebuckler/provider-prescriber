@@ -5,10 +5,10 @@ This repo contains the documentation for my final capstone project at [Galvanize
 [Background](#background)  
 [Objective](#objective)  
 [Process Overview and Flow](#process-overview-and-flow)   
-[EDA & Data Mining](#eda-&-data-mining)  
-[Method](#method)  
-[Measures](#measures)  
-[Results](#results)  
+[EDA and Data Mining](#eda-and-data-mining)  
+[Method](#method)   
+[Measures](#measures)   
+[Results](#results)   
 [Next Steps](#next-steps)  
 [References](#references)  
 [Credits](#credits)  
@@ -37,7 +37,7 @@ Below is a summary of the process steps which begins with data exploration and d
 
 ![ProcessFlow](/images/ProcessFlow.png)
 
-## EDA & Data Mining  
+## EDA and Data Mining  
 * Download public dataset from www.cms.org
 * Load data subset locally
 * Identify key features
