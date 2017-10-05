@@ -123,7 +123,13 @@ With more time, I would like to explore the following areas:
 7. [Locality Sensitive Hashing at Uber Engineering](https://databricks.com/blog/2017/05/09/detecting-abuse-scale-locality-sensitive-hashing-uber-engineering.html)  
 
 ## Acknowledgements
-Special thanks to the Galvanize instructors (Adam Richards, Frank Burkholder), DSRs (John Prendergast, Taryn Heilman, Jon Courtney), project mentor (Gadalia O'Bryan), web dev support (Chris White), classmates and my family and friends for their support and encouragement during my immersive experience. Most importantly, I would like to thank my husband, Simon Buckler, for giving me the opportunity to pursue my goal of becoming a data scientist. I am incredibly fortunate to be a part of the amazing g49 cohort and for my Galvanize immersive experience!  
+Special thanks to:  
+* Galvanize instructors (Adam Richards, Frank Burkholder) and residents (John Prendergast, Taryn Heilman, Jon Courtney), for their leadership, unending patience, and words of wisdom as we begin our data science journey.  
+* Project mentor, Gadalia O'Bryan, for her guidance and feedback on new and challenging topics.  
+* Web app creator, Chris White, for building a UI and taking on a project during his own immersive. 
+* My husband Simon, for his unconditional patience, support and understanding of what it is like to chase after something challenging and exciting.  
+* My amazing friends and famiy, for their support and encouragement during my immersive experience.  
+* g49 classmates, for being a part of the most talented and diverse data science cohort--I have learned so much from each of you!   
 ![g49](/images/g49.png)
 
 [Back to top](#provider-prescriber)
