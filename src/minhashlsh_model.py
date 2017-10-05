@@ -1,21 +1,13 @@
-import os, re, time
 import pandas as pd
 import pyspark as ps
-from pyspark.sql import DataFrameWriter
-from pyspark.sql.types import StructType, StructField, IntegerType, StringType, FloatType, ArrayType, DoubleType
 from pyspark.sql.functions import *
-from pyspark.ml.linalg import Vectors
-from pyspark.ml.feature import StringIndexer, OneHotEncoder, VectorAssembler, MinHashLSH, BucketedRandomProjectionLSH
-from pyspark.ml import Pipeline
-from pyspark.mllib.linalg.distributed import RowMatrix
-
-#os.environ["SPARK_CLASSPATH"] = '~/postgresql-9.1-901-1.jdbc4.jar'
+from pyspark.ml.feature import VectorAssembler, MinHashLSH
 
 
 if __name__ == '__main__':
 
     spark = ps.sql.SparkSession.builder \
-                .appName("capstone") \
+                .appName("minhash") \
                 .getOrCreate()
 
     cdf = spark.read.csv('npidata_20050523-20170813_clean.csv', \
@@ -38,21 +30,8 @@ if __name__ == '__main__':
     distances = distances.withColumn('NPI_similar', distances.datasetB.NPI)
     distances = distances.drop('datasetA', 'datasetB')
 
-    # write locally
-    # distances.select('NPI', 'NPI_similar', 'JaccardDistance') \
-    #             .write.csv('distances', header=True, mode='overwrite')
-
-    # write remotely to S3
     distances.select('NPI', 'NPI_similar', 'JaccardDistance') \
-                .write.csv('s3n://gschoolcapstone/distances', header=True, mode='overwrite')
+                .write.csv('distances', header=True, mode='overwrite')
 
-    # write to Postgres database
-    # format jdbc:postgresql://host:port/database
-    # url = "jdbc:postgresql://128.177.113.102:5432/capstone"
-    # table = "distances10000"
-    # mode = "overwrite" # or "append"
-    # properties = {"user":"postgres", "password":"postgres", "driver": "org.postgresql.Driver"}
-    #
-    # my_writer = DataFrameWriter(distances)
-    # my_writer.jdbc(url=url, table='distances10000', mode=mode, properties=properties)
-    # distances.write.jdbc(url=url, table="similarity", mode=mode, properties=properties)
+    # distances.select('NPI', 'NPI_similar', 'JaccardDistance') \
+    #             .write.csv('s3n://gschoolcapstone/distances', header=True, mode='overwrite')
