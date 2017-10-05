@@ -74,7 +74,12 @@ However, it is important to consider the error that is caused by approximation. 
 ![error](/images/error.png)  
 
 The simple example described in the method can be used used to compare the exact distances versus the estimated distance.  
-$\d(S1,S2) = $  
+
+Exact | Estimated
+------|----------
+![S1S2exact](/images/S1S2exact.png) | ![S1S2estimated](/images/S1S2estimated.png)  
+![S1S3exact](/images/S1S3exact.png) | ![S1S3estimated](/images/S1S3estimated.png)  
+![S1S4exact](/images/S1S4exact.png) | ![S1S4estimated](/images/S1S4estimated.png)  
 
 The sources of possible error are described below.  
 * False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system.   
