@@ -73,6 +73,10 @@ Below is a simple example of how the jaccard distance is calculated between item
 However, it is important to consider the error that is caused by approximation. The expected error for *k* hash functions is at most O(1/√k). Therefore, given k=10 hashes, the max error is expected to be at most ~32% for this study.  
 ![error](/images/error.png)  
 
+The simple example described in the method can be used used to compare the exact distances versus the estimated distance.  
+$$
+\d(S1,S2) = 
+$$
 The sources of possible error are described below.  
 * False Positives occur when a pair of dissimilar items are grouped in the same bucket and add noise to the system.   
 ![FP](/images/FP.png)  
@@ -82,7 +86,7 @@ The sources of possible error are described below.
 This is an unsupervised learning case study where a true target label does not exist. With a target label, accuracy, precision and recall could be calculated to evaluate the predictive power of the model.  
 
 ## Results
-I was able to compute similarity distances for a subset of the data (10,000 NPIs) and store inside a database which can be queried for specific NPIs. Try it out for yourself [here](https://buckler-pcd.firebaseapp.com/). (website created by Galvanize Web Dev student Chris White). Note: Only NPIs in this [list](/data/website10000NPIs.txt) are currently included in the database. Need help finding your provider's NPI? Search [here](https://npiregistry.cms.hhs.gov/registry/).
+I was able to compute similarity distances for a subset of the data (10,000 NPIs) and stored inside a database which can be queried for specific NPIs. Try it out for yourself [here](https://buckler-pcd.firebaseapp.com/). (website created by Galvanize Web Dev student Chris White). Note: Only NPIs in this [list](/data/website10000NPIs.txt) are currently included in the database. Need help finding your provider's NPI? Search [here](https://npiregistry.cms.hhs.gov/registry/).
 
 ## Next Steps
 With more time, I would like to explore the following areas:
@@ -94,14 +98,13 @@ With more time, I would like to explore the following areas:
 * Cluster or graph items to visualize groupings
 
 ## References
-[MinHash](https://en.wikipedia.org/wiki/MinHash)  
-[Min Hashing](https://www.cs.utah.edu/~jeffp/teaching/cs5955/L5-Minhash.pdf)  
-[Computing MinHash Signatures](http://infolab.stanford.edu/~ullman/mmds/ch3.pdf)  
-[Pyspark MinHash LSH documentation](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSH)  
-[Getting Started on LSH](http://homepages.lasige.di.fc.ul.pt/~vielmo/notes/2016_11_18_navtalk_lsh.pdf) by Vinicius Vielmo Cogo   
-[Near Neighbor Search in High Dimensional Data 2](https://web.stanford.edu/class/cs345a/slides/05-LSH.pdf) by Anand Rajaraman   
-[Locality Sensitive Hashing at Uber Engineering](https://databricks.com/blog/2017/05/09/detecting-abuse-scale-locality-sensitive-hashing-uber-engineering.html)
-
+1. [Stanford’s Mining of Massive Datasets Ch3](http://infolab.stanford.edu/~ullman/mmds/ch3.pdf)  
+2. [Pyspark MinHash LSH documentation](http://spark.apache.org/docs/2.2.0/api/python/pyspark.ml.html?highlight=minhash%20lsh#pyspark.ml.feature.MinHashLSH)  
+3. [MinHash](https://en.wikipedia.org/wiki/MinHash)  
+4. [Min Hashing](https://www.cs.utah.edu/~jeffp/teaching/cs5955/L5-Minhash.pdf)  
+5. [Getting Started on LSH](http://homepages.lasige.di.fc.ul.pt/~vielmo/notes/2016_11_18_navtalk_lsh.pdf) by Vinicius Vielmo Cogo   
+6. [Near Neighbor Search in High Dimensional Data 2](https://web.stanford.edu/class/cs345a/slides/05-LSH.pdf) by Anand Rajaraman   
+7. [Locality Sensitive Hashing at Uber Engineering](https://databricks.com/blog/2017/05/09/detecting-abuse-scale-locality-sensitive-hashing-uber-engineering.html)  
 
 ## Credits
 Special thanks to the Galvanize instructors (Adam Richards, Frank Burkholder), DSRs (John Prendergast, Taryn Heilman, Jon Courtney), project mentor (Gadalia O'Bryan), web dev support (Chris White), classmates and my family and friends for their support and encouragement during my immersive experience. Most importantly, I would like to thank my husband, Simon Buckler, for giving me the opportunity to pursue my goal of becoming a data scientist. I am incredibly fortunate to be a part of the amazing g49 cohort and for my Galvanize immersive experience!  
