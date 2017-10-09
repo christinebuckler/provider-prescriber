@@ -131,6 +131,6 @@ Special thanks to:
 * My amazing friends and famiy, for their support and encouragement during my immersive experience.  
 * g49 classmates, for being a part of the most talented and diverse data science cohort--I have learned so much from each of you.  
 * My cats, Madison and Bri, for reminding me to stay curious and purr-sue my goals!     
-![g49](/images/g49.png) ![feline_help](/images/feline_help.jpg)
+![g49](/images/g49.png) ![feline_help](/images/feline_help.jpg)  
 
 [Back to top](#provider-prescriber)
